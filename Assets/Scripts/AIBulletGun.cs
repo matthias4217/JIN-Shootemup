@@ -61,7 +61,7 @@ public class AIBulletGun : MonoBehaviour
     public void Fire() {
         if (timeSinceLastShot >= Cooldown) {
             SimpleBullet clonedBullet = Instantiate(bullet, transform);
-            clonedBullet.Init(damage, speed, _playerEngine.Position + new Vector2(-1, 0));
+            clonedBullet.Init(damage, speed, _playerEngine.Position + new Vector2(-0.5f, 0));
             timeSinceLastShot = 0;
         }
     }

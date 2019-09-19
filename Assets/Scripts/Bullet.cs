@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum BulletType {
-    PlayerBullet,
-    EnemyBullet,
-};
-
 
 public abstract class Bullet : MonoBehaviour
 {
-    
+        
+    public enum BulletType {
+        PlayerBullet,
+        EnemyBullet,
+    };
+
     [SerializeField]
     private float damage;
     public float Damage {
@@ -44,6 +44,17 @@ public abstract class Bullet : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private BulletType type;
+    public BulletType Type {
+        get {
+            return this.type;
+        }
+        private set {
+            this.type = value;
+        }
+    }
+
     public abstract void Init(float damage, Vector2 speed, Vector2 position);
     public abstract void UpdatePosition();
 
@@ -64,8 +75,18 @@ public abstract class Bullet : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-        Debug.Log("Prout");
-        collider.gameObject.GetComponent<BaseAvatar>().TakeDamage(Damage);
-        Destroy(gameObject);
+        EnemyAvatar enemyAvatar = collider.gameObject.GetComponent<EnemyAvatar>();
+        PlayerAvatar playerAvatar = collider.gameObject.GetComponent<PlayerAvatar>();
+
+        if (type == BulletType.PlayerBullet && enemyAvatar != null) {
+            enemyAvatar.TakeDamage(Damage);
+            Destroy(gameObject);
+            Debug.Log("Enemy hit");
+        }
+        else if (type == BulletType.EnemyBullet && playerAvatar != null) {
+            playerAvatar.TakeDamage(Damage);
+            Destroy(gameObject);
+            Debug.Log("Player hit");
+        }
     }
 }

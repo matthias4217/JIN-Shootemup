@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1971632560036291147}
   - component: {fileID: 8066761730979093480}
   - component: {fileID: 2310845662517840060}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shot_poulpi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,3 +122,4 @@ MonoBehaviour:
   damage: 0
   speed: {x: 0, y: 0}
   position: {x: 0, y: 0}
+  type: 1

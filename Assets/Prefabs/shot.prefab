@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7098671511373013950}
   - component: {fileID: 7651276929772663266}
   - component: {fileID: 8868634782225109721}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,3 +122,4 @@ MonoBehaviour:
   damage: 0
   speed: {x: 10, y: 0}
   position: {x: 0, y: 0}
+  type: 0
