@@ -9,7 +9,10 @@ public class UIManager : MonoBehaviour
     private GameManager gameManager;
 
     [SerializeField]
-    private Slider slider;
+    private Slider healthSlider;
+
+    [SerializeField]
+    private Slider energySlider;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +23,12 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Player" + gameManager.Player.name);
         if (gameManager.Player != null) {
-            Debug.Log("Max Health" + gameManager.Player.MaxHealth);
-            slider.maxValue = gameManager.Player.MaxHealth;
-            slider.value = gameManager.Player.Health;
-            // maxvalue
+            Debug.Log("Health " + gameManager.Player.Health + "/" + gameManager.Player.MaxHealth);
+            healthSlider.maxValue = gameManager.Player.MaxHealth;
+            healthSlider.value = gameManager.Player.Health;
+            energySlider.maxValue = gameManager.Player.MaxEnergy;
+            energySlider.value = gameManager.Player.Energy;
         }
     }
 }

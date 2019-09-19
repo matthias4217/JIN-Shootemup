@@ -161,6 +161,8 @@ MonoBehaviour:
   maxSpeed: 10
   health: 100
   maxHealth: 100
+  maxEnergy: 20
+  energyCooldown: 0.5
 --- !u!114 &3006611598737608146
 MonoBehaviour:
   m_ObjectHideFlags: 0

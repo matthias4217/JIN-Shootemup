@@ -37,6 +37,7 @@ public class BulletGun : MonoBehaviour
     }
 
     private Engines _playerEngine;
+    private PlayerAvatar _playerAvatar;
     [SerializeField]
     private SimpleBullet bullet;
 
@@ -46,14 +47,16 @@ public class BulletGun : MonoBehaviour
     void Start()
     {
         _playerEngine = GetComponent<Engines>();
+        _playerAvatar = GetComponent<PlayerAvatar>();
         timeSinceLastShot = 0; 
     }
 
     public void Fire() {
-        if (timeSinceLastShot >= Cooldown) {
+        if (_playerAvatar.Energy > 0 && timeSinceLastShot >= Cooldown) {
             SimpleBullet clonedBullet = Instantiate(bullet, transform);
             clonedBullet.Init(damage, speed, _playerEngine.Position + new Vector2(1, 0));
             timeSinceLastShot = 0;
+            _playerAvatar.Energy --;
         }
     }
 
@@ -61,5 +64,11 @@ public class BulletGun : MonoBehaviour
     void Update()
     {
         timeSinceLastShot += Time.deltaTime;
+        if (timeSinceLastShot > _playerAvatar.EnergyCooldown) {
+            _playerAvatar.Energy += 2;
+            if (_playerAvatar.Energy > _playerAvatar.MaxEnergy) {
+                _playerAvatar.Energy = _playerAvatar.MaxEnergy;
+            }
+        }
     }
 }
