@@ -24,7 +24,6 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         if (gameManager.Player != null) {
-            Debug.Log("Health " + gameManager.Player.Health + "/" + gameManager.Player.MaxHealth);
             healthSlider.maxValue = gameManager.Player.MaxHealth;
             healthSlider.value = gameManager.Player.Health;
             energySlider.maxValue = gameManager.Player.MaxEnergy;
