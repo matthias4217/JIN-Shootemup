@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Instantiate Player
-        PlayerAvatar player = Instantiate(playerPrefab);
+        Player = Instantiate(playerPrefab);
         lastEnemySpawn = 0;
         worldHeight = 10;
         heightOrigin = 5;
