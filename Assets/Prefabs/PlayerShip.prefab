@@ -186,6 +186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  speed: {x: 1, y: 0}
+  speed: {x: 5, y: 0}
   cooldown: 0.2
   bullet: {fileID: 8868634782225109721, guid: 2cbfc379d71d65c488c2a97173d13d5f, type: 3}
