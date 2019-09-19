@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,16 @@ public class GameManager : MonoBehaviour
         }
         private set {
             this.enemySpawnInterval = value;
+        }
+    }
+
+    private int score;
+    public int Score {
+        get {
+            return this.score;
+        }
+        private set {
+            this.score = value;
         }
     }
 
@@ -44,6 +55,7 @@ public class GameManager : MonoBehaviour
         lastEnemySpawn = 0;
         worldHeight = 10;
         heightOrigin = 5;
+        Score = 0;
     }
 
     // Update is called once per frame
@@ -56,5 +68,16 @@ public class GameManager : MonoBehaviour
             Instantiate(enemyPrefab, new Vector2(6.6f, height), Quaternion.identity);
             lastEnemySpawn = 0;
         }
+    }
+
+    public static void PlayerIsDead() {
+        Debug.Log("The Player is dead !");
+        SceneManager.LoadScene("Menu");
+    }
+
+    
+    public void EnemyIsDead() {
+        Debug.Log("An enemy is dead !");
+        Score += 100;
     }
 }

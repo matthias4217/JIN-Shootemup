@@ -14,6 +14,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Slider energySlider;
 
+    
+    [SerializeField]
+    private Text scoreValue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +27,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scoreValue.text = gameManager.Score.ToString();
         if (gameManager.Player != null) {
             healthSlider.maxValue = gameManager.Player.MaxHealth;
             healthSlider.value = gameManager.Player.Health;

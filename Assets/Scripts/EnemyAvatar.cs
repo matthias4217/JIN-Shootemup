@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class EnemyAvatar : BaseAvatar
 {
+
+    public delegate void DeathEvent();
+    public event DeathEvent OnDeathEvent;
+
+    private GameManager _gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _gameManager = (GameManager) GameObject.FindObjectOfType(typeof(GameManager));
+        OnDeathEvent += _gameManager.EnemyIsDead;
     }
 
     // Update is called once per frame
@@ -27,6 +34,9 @@ public class EnemyAvatar : BaseAvatar
     }
 
     public override void Die() {
+        if (OnDeathEvent != null) {
+            OnDeathEvent();
+        }
         Destroy(gameObject);
     }
 }

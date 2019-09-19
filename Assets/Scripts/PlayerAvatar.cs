@@ -36,11 +36,14 @@ public class PlayerAvatar : BaseAvatar
         }
     }
 
+    public delegate void DeathEvent();
+    public event DeathEvent OnDeathEvent;
 
     // Start is called before the first frame update
     void Start()
     {
         Energy = MaxEnergy;
+        OnDeathEvent += GameManager.PlayerIsDead;
     }
 
     // Update is called once per frame
@@ -57,7 +60,10 @@ public class PlayerAvatar : BaseAvatar
     }
 
     public override void Die() {
-        // TODO event OnDeath
+        if (OnDeathEvent != null) {
+            OnDeathEvent();
+        }
         Destroy(gameObject);
     }
+
 }
